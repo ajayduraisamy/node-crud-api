@@ -2,11 +2,16 @@ const express = require("express");
 require("dotenv").config();
 const connectDB = require("./config/db");
 
+const taskRoutes = require("./routes/task.routes");
+
 const app = express();
 app.use(express.json());
 
 // connect db
 connectDB();
+
+// routes
+app.use("/tasks", taskRoutes);
 
 // health route
 app.get("/health", (req, res) => {
