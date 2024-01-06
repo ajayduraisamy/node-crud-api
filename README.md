@@ -10,3 +10,7 @@ GET /tasks/:id
 
 PUT /tasks/:id → updates full task  
 PATCH /tasks/:id → partial update
+
+## Delete Task API
+
+DELETE /tasks/:id → deletes a task
