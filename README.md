@@ -1,16 +1,30 @@
-## Read Tasks API
+# 🚀 Node CRUD API
 
-GET /tasks  
-→ returns all tasks  
+A simple and professional Node.js + Express backend API for practicing full CRUD operations using MongoDB and Mongoose.
 
-GET /tasks/:id  
-→ returns single task
+This project demonstrates:
+- RESTful API design
+- MVC folder structure
+- MongoDB + Mongoose schema modeling
+- Environment-based configuration
+- Clean README & endpoint documentation
 
-## Update Task API
+---
 
-PUT /tasks/:id → updates full task  
-PATCH /tasks/:id → partial update
+## 📦 Tech Stack
 
-## Delete Task API
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- dotenv
+- nodemon
 
-DELETE /tasks/:id → deletes a task
+---
+
+## ▶️ Run Locally
+
+### Install dependencies
+```bash
+npm install
+npm run dev
