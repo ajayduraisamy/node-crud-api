@@ -28,3 +28,28 @@ This project demonstrates:
 ```bash
 npm install
 npm run dev
+
+---
+
+
+---
+## Filter by status##
+```bash
+curl -X GET "http://localhost:5000/api/tasks?status=completed"
+```
+
+#### Filter by due date
+```bash
+curl -X GET "http://localhost:5000/api/tasks?dueDate=2023-01-01"
+```
+
+#### Filter by status and due date
+```bash
+curl -X GET "http://localhost:5000/api/tasks?status=completed&dueDate=2023-01-01"
+```
+
+---
+
+### 📝 Create a Task
+
+```bash
