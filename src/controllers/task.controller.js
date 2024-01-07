@@ -12,10 +12,24 @@ const createTask = async (req, res) => {
   }
 };
 
-// GET ALL TASKS
+
+// GET ALL TASKS with filter + search
 const getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find().sort({ createdAt: -1 });
+    const { status, q } = req.query;
+    const query = {};
+
+    // filter by completed status
+    if (status === "done") query.completed = true;
+    if (status === "active") query.completed = false;
+
+    // search by text
+    if (q) {
+      query.text = { $regex: q, $options: "i" };
+    }
+
+    const tasks = await Task.find(query).sort({ createdAt: -1 });
+
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
