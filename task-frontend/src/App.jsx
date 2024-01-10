@@ -59,8 +59,22 @@ function App() {
 
       <ul>
         {tasks.map((task) => (
-          <li key={task._id}>{task.text}</li>
+          <li key={task._id}>
+            {task.text}
+
+            <button
+              style={{
+                marginLeft: 10,
+                color: "red",
+                cursor: "pointer",
+              }}
+              onClick={() => deleteTask(task._id)}
+            >
+              🗑
+            </button>
+          </li>
         ))}
+
       </ul>
     </div>
   );
