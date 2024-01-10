@@ -32,6 +32,14 @@ function App() {
     setText("");
     loadTasks();
   };
+  const deleteTask = async (id) => {
+    try {
+      await api.delete(`/tasks/${id}`);
+      loadTasks();
+    } catch (error) {
+      alert("Failed to delete task");
+    }
+  };
 
   return (
     <div style={{ padding: "24px" }}>
