@@ -59,7 +59,7 @@ function App() {
 
       <ul>
         {tasks.map((task) => (
-          <li key={task._id}>
+          <li key={task._id} style={{ marginBottom: 8 }}>
             {task.text}
 
             <button
