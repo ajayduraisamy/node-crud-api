@@ -4,6 +4,8 @@ import api from "./api";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   // load tasks
   const loadTasks = async () => {
