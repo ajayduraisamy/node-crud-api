@@ -1,7 +1,13 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function Navbar() {
     return (
-        <nav style={{ padding: "12px 20px", background: "#0f172a", color: "#fff" }}>
-            <h3 style={{ margin: 0 }}>✅ Task Manager</h3>
+        <nav className="navbar navbar-dark bg-dark">
+            <div className="container-fluid">
+                <span className="navbar-brand mb-0 h1 d-flex align-items-center">
+                    ✅ Task Manager
+                </span>
+            </div>
         </nav>
     );
 }
