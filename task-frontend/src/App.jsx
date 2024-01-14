@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "./api";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -89,7 +90,10 @@ function App() {
   };
 
   return (
+    
     <div style={{ padding: "24px" }}>
+      <Navbar />
+
       <h2>🚀 Node CRUD Task App</h2>
 
       <form onSubmit={createTask} style={{ marginBottom: 20 }}>
