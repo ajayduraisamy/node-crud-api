@@ -120,7 +120,8 @@ function App() {
         ))}
 
 
-        
+        <p className="text-muted">Total tasks: {tasks.length}</p>
+
       </ul>
     </div>
   );
