@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "./api";
 import Navbar from "./components/Navbar";
+import TaskItem from "./components/TaskItem";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -109,65 +110,17 @@ function App() {
 
       <ul style={{ listStyle: "none", padding: 0 }}>
         {tasks.map((task) => (
-          <li key={task._id} style={{ marginBottom: 8 }}>
-
-            {editingId === task._id ? (
-              <>
-                <input
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-
-                <button
-                  style={{ marginLeft: 6 }}
-                  onClick={saveEdit}
-                >
-                  💾
-                </button>
-
-                <button
-                  style={{ marginLeft: 4 }}
-                  onClick={() => setEditingId(null)}
-                >
-                  ❌
-                </button>
-              </>
-            ) : (
-              <>
-                <span
-                  onClick={() => toggleTask(task)}
-                  style={{
-                    cursor: "pointer",
-                    textDecoration: task.completed
-                      ? "line-through"
-                      : "none",
-                  }}
-                >
-                  {task.text}
-                </span>
-
-                <button
-                  style={{ marginLeft: 8 }}
-                  onClick={() => startEdit(task)}
-                >
-                  ✏️
-                </button>
-
-                <button
-                  style={{
-                    marginLeft: 10,
-                    color: "red",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => deleteTask(task._id)}
-                >
-                  🗑
-                </button>
-              </>
-            )}
-
-          </li>
+          <TaskItem
+            key={task._id}
+            task={task}
+            onToggle={toggleTask}
+            onEdit={startEdit}
+            onDelete={deleteTask}
+          />
         ))}
+
+
+        
       </ul>
     </div>
   );
