@@ -10,14 +10,23 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
 
+  // ✅ loading state
+  const [loading, setLoading] = useState(false);
+
   // load tasks
   const loadTasks = async () => {
     try {
+      setLoading(true);
+
       const res = await api.get("/tasks");
       setTasks(res.data);
+
     } catch (err) {
       console.error(err);
       alert("Failed to load tasks");
+
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -91,7 +100,6 @@ function App() {
   };
 
   return (
-    
     <div style={{ padding: "24px" }}>
       <Navbar />
 
@@ -108,6 +116,11 @@ function App() {
         <button type="submit">Add</button>
       </form>
 
+      {/* ✅ Loading Indicator */}
+      {loading && (
+        <p style={{ color: "#6b7280" }}>Loading tasks...</p>
+      )}
+
       <ul style={{ listStyle: "none", padding: 0 }}>
         {tasks.map((task) => (
           <TaskItem
@@ -118,11 +131,11 @@ function App() {
             onDelete={deleteTask}
           />
         ))}
-
-
-        <p className="text-muted">Total tasks: {tasks.length}</p>
-
       </ul>
+
+      <p className="text-muted">
+        Total tasks: {tasks.length}
+      </p>
     </div>
   );
 }
