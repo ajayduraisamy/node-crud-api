@@ -75,16 +75,33 @@ function App() {
       <ul>
         {tasks.map((task) => (
           <li key={task._id} style={{ marginBottom: 8 }}>
-            <span
-              onClick={() => toggleTask(task)}
-              style={{
-                cursor: "pointer",
-                textDecoration: task.completed ? "line-through" : "none"
+
+            {editingId === task._id ? (
+              <input
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
+              />
+            ) : (
+              <span
+                onClick={() => toggleTask(task)}
+                style={{
+                  cursor: "pointer",
+                  textDecoration: task.completed ? "line-through" : "none",
+                }}
+              >
+                {task.text}
+              </span>
+            )}
+
+            <button
+              style={{ marginLeft: 8 }}
+              onClick={() => {
+                setEditingId(task._id);
+                setEditText(task.text);
               }}
             >
-              {task.text}
-            </span>
-
+              ✏️
+            </button>
 
             <button
               style={{
@@ -96,8 +113,10 @@ function App() {
             >
               🗑
             </button>
+
           </li>
         ))}
+
 
       </ul>
     </div>
