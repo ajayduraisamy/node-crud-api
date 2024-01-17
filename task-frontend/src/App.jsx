@@ -46,6 +46,21 @@ function App() {
       alert("Failed to update task");
     }
   };
+  const saveEdit = async () => {
+    if (editText.trim().length < 3) return alert("Text too short");
+
+    try {
+      await api.patch(`/tasks/${editingId}`, {
+        text: editText,
+      });
+
+      setEditingId(null);
+      setEditText("");
+      loadTasks();
+    } catch (err) {
+      alert("Failed to update task");
+    }
+  };
 
   const deleteTask = async (id) => {
     try {
@@ -93,7 +108,28 @@ function App() {
               </span>
             )}
 
-            <button
+          {editingId === task._id ? (
+  <>
+    <input
+      value={editText}
+      onChange={(e) => setEditText(e.target.value)}
+    />
+
+    <button
+      style={{ marginLeft: 6 }}
+      onClick={saveEdit}
+    >
+      💾
+    </button>
+
+    <button
+      style={{ marginLeft: 4 }}
+      onClick={() => setEditingId(null)}
+    >
+      ❌
+    </button>
+  </>
+) : ()}
               style={{ marginLeft: 8 }}
               onClick={() => {
                 setEditingId(task._id);
