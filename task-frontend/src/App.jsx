@@ -122,15 +122,19 @@ function App() {
       )}
 
       <ul style={{ listStyle: "none", padding: 0 }}>
-        {tasks.map((task) => (
-          <TaskItem
-            key={task._id}
-            task={task}
-            onToggle={toggleTask}
-            onEdit={startEdit}
-            onDelete={deleteTask}
-          />
-        ))}
+        <TaskItem
+          key={task._id}
+          task={task}
+          editingId={editingId}
+          editText={editText}
+          setEditText={setEditText}
+          onToggle={toggleTask}
+          onEdit={startEdit}
+          onSave={saveEdit}
+          onCancel={() => setEditingId(null)}
+          onDelete={deleteTask}
+        />
+
       </ul>
 
       <p className="text-muted">
