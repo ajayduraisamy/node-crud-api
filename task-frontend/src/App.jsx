@@ -112,7 +112,6 @@ function App() {
           onChange={(e) => setText(e.target.value)}
           placeholder="New task..."
         />
-
         <button type="submit">Add</button>
       </form>
 
@@ -122,19 +121,20 @@ function App() {
       )}
 
       <ul style={{ listStyle: "none", padding: 0 }}>
-        <TaskItem
-          key={task._id}
-          task={task}
-          editingId={editingId}
-          editText={editText}
-          setEditText={setEditText}
-          onToggle={toggleTask}
-          onEdit={startEdit}
-          onSave={saveEdit}
-          onCancel={() => setEditingId(null)}
-          onDelete={deleteTask}
-        />
-
+        {tasks.map((task) => (
+          <TaskItem
+            key={task._id}
+            task={task}
+            editingId={editingId}
+            editText={editText}
+            setEditText={setEditText}
+            onToggle={toggleTask}
+            onEdit={startEdit}
+            onSave={saveEdit}
+            onCancel={() => setEditingId(null)}
+            onDelete={deleteTask}
+          />
+        ))}
       </ul>
 
       <p className="text-muted">

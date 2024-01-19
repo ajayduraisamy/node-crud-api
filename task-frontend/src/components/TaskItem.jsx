@@ -12,7 +12,13 @@ function TaskItem({
     const isEditing = editingId === task._id;
 
     return (
-        <li className="d-flex align-items-center mb-2">
+        <li
+            className="list-group-item d-flex align-items-center mb-3 shadow-sm"
+            style={{
+                borderRadius: "12px",
+                transition: "0.2s ease",
+            }}
+        >
             {isEditing ? (
                 <>
                     <input
@@ -29,7 +35,7 @@ function TaskItem({
                     </button>
 
                     <button
-                        className="btn btn-sm btn-secondary"
+                        className="btn btn-sm btn-outline-secondary"
                         onClick={onCancel}
                     >
                         ❌
@@ -43,6 +49,7 @@ function TaskItem({
                             cursor: "pointer",
                             textDecoration: task.completed ? "line-through" : "none",
                             flex: 1,
+                            fontSize: "15px",
                         }}
                     >
                         {task.text}
