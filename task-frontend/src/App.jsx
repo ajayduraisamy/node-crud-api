@@ -46,6 +46,21 @@ function App() {
       alert("Failed to create task");
     }
   };
+  // clear all completed tasks
+  const clearCompleted = async () => {
+    try {
+      const completedTasks = tasks.filter((t) => t.completed);
+
+      for (let task of completedTasks) {
+        await api.delete(`/tasks/${task._id}`);
+      }
+
+      loadTasks();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to clear completed tasks");
+    }
+  };
 
   // toggle complete
   const toggleTask = async (task) => {
@@ -165,6 +180,12 @@ function App() {
         <p className="text-center text-secondary mt-3">
           Total tasks: {tasks.length}
         </p>
+        <button
+          onClick={clearCompleted}
+          className="btn btn-outline-danger w-100 mt-2"
+        >
+          🧹 Clear Completed Tasks
+        </button>
       </div>
     </div>
   );
