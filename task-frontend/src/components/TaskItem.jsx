@@ -13,10 +13,13 @@ function TaskItem({
 
     return (
         <li
-            className="list-group-item d-flex align-items-center mb-3 shadow-sm"
+            className="d-flex align-items-center mb-3 p-3 shadow-sm"
             style={{
-                borderRadius: "12px",
-                transition: "0.2s ease",
+                borderRadius: "14px",
+                background: "linear-gradient(145deg, #0f172a, #020617)",
+                color: "#e5e7eb",
+                borderLeft: "4px solid #38bdf8",
+                transition: "all 0.2s ease",
             }}
         >
             {isEditing ? (
@@ -25,6 +28,11 @@ function TaskItem({
                         className="form-control me-2"
                         value={editText}
                         onChange={(e) => setEditText(e.target.value)}
+                        style={{
+                            background: "#020617",
+                            borderColor: "#38bdf8",
+                            color: "#e5e7eb",
+                        }}
                     />
 
                     <button
@@ -35,7 +43,7 @@ function TaskItem({
                     </button>
 
                     <button
-                        className="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-light"
                         onClick={onCancel}
                     >
                         ❌
@@ -47,16 +55,19 @@ function TaskItem({
                         onClick={() => onToggle(task)}
                         style={{
                             cursor: "pointer",
-                            textDecoration: task.completed ? "line-through" : "none",
                             flex: 1,
-                            fontSize: "15px",
+                            fontSize: "16px",
+                            fontWeight: "500",
+                            textDecoration: task.completed ? "line-through" : "none",
+                            color: task.completed ? "#94a3b8" : "#f8fafc",
+                            transition: "0.2s",
                         }}
                     >
                         {task.text}
                     </span>
 
                     <button
-                        className="btn btn-sm btn-outline-primary mx-1"
+                        className="btn btn-sm btn-outline-info mx-1"
                         onClick={() => onEdit(task)}
                     >
                         ✏️

@@ -20,11 +20,9 @@ function App() {
 
       const res = await api.get("/tasks");
       setTasks(res.data);
-
     } catch (err) {
       console.error(err);
       alert("Failed to load tasks");
-
     } finally {
       setLoading(false);
     }
@@ -37,7 +35,6 @@ function App() {
   // create task
   const createTask = async (e) => {
     e.preventDefault();
-
     if (text.trim().length < 3) return;
 
     try {
@@ -71,8 +68,7 @@ function App() {
 
   // save edited task
   const saveEdit = async () => {
-    if (editText.trim().length < 3)
-      return alert("Text too short");
+    if (editText.trim().length < 3) return alert("Text too short");
 
     try {
       await api.patch(`/tasks/${editingId}`, {
@@ -100,46 +96,76 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "24px" }}>
+    <div className="container" style={{ maxWidth: "700px" }}>
       <Navbar />
 
-      <h2>🚀 Node CRUD Task App</h2>
+      {/* Premium App Card */}
+      <div
+        className="p-4 shadow-lg"
+        style={{
+          background: "linear-gradient(145deg, #020617, #0f172a)",
+          borderRadius: "16px",
+          marginTop: "20px",
+        }}
+      >
+        <h2
+          className="mb-3 text-center"
+          style={{
+            background: "linear-gradient(90deg,#38bdf8,#6366f1)",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+            fontWeight: "700",
+          }}
+        >
+          🚀 Node CRUD Task App
+        </h2>
 
-      <form onSubmit={createTask} style={{ marginBottom: 20 }}>
-        <input
-          style={{ padding: 8, marginRight: 8 }}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="New task..."
-        />
-        <button type="submit">Add</button>
-      </form>
-
-      {/* ✅ Loading Indicator */}
-      {loading && (
-        <p style={{ color: "#6b7280" }}>Loading tasks...</p>
-      )}
-
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {tasks.map((task) => (
-          <TaskItem
-            key={task._id}
-            task={task}
-            editingId={editingId}
-            editText={editText}
-            setEditText={setEditText}
-            onToggle={toggleTask}
-            onEdit={startEdit}
-            onSave={saveEdit}
-            onCancel={() => setEditingId(null)}
-            onDelete={deleteTask}
+        <form onSubmit={createTask} className="d-flex mb-4">
+          <input
+            className="form-control me-2"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Add new task..."
+            style={{
+              background: "#020617",
+              color: "#e5e7eb",
+              border: "1px solid #38bdf8",
+            }}
           />
-        ))}
-      </ul>
+          <button className="btn btn-info fw-bold text-dark">Add</button>
+        </form>
 
-      <p className="text-muted">
-        Total tasks: {tasks.length}
-      </p>
+        {/* ✅ Loading Indicator */}
+        {loading && (
+          <div
+            className="alert alert-info text-center py-2"
+            style={{ background: "#020617", color: "#38bdf8" }}
+          >
+            Loading tasks...
+          </div>
+        )}
+
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          {tasks.map((task) => (
+            <TaskItem
+              key={task._id}
+              task={task}
+              editingId={editingId}
+              editText={editText}
+              setEditText={setEditText}
+              onToggle={toggleTask}
+              onEdit={startEdit}
+              onSave={saveEdit}
+              onCancel={() => setEditingId(null)}
+              onDelete={deleteTask}
+            />
+          ))}
+        </ul>
+
+        <p className="text-center text-secondary mt-3">
+          Total tasks: {tasks.length}
+        </p>
+      </div>
     </div>
   );
 }
