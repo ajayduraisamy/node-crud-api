@@ -37,8 +37,10 @@ function App() {
     <div style={{ padding: "24px" }}>
       <h2>🚀 Node CRUD Task App</h2>
 
-      <form onSubmit={createTask}>
+      <form onSubmit={createTask} style={{ marginBottom: 20 }}>
+
         <input
+          style={{ padding: 8, marginRight: 8 }}
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="New task..."
