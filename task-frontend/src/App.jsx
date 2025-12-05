@@ -21,7 +21,14 @@ function App() {
 
     if (text.trim().length < 3) return;
 
-    await api.post("/tasks", { text });
+    try {
+      await api.post("/tasks", { text });
+      setText("");
+      loadTasks();
+    } catch (e) {
+      alert("Failed to create task");
+    }
+
     setText("");
     loadTasks();
   };
